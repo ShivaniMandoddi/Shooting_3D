@@ -22,7 +22,7 @@ public class EnemyLauncher : MonoBehaviour
         if(time>2f)
         {
             Vector3 position = GetPosition();
-            Debug.Log(position);
+            //Debug.Log(position);
             Instantiate(enemyPrefab, position, Quaternion.identity);
             time = 0f;
         }

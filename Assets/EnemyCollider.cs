@@ -7,6 +7,7 @@ public class EnemyCollider : MonoBehaviour
     public AnimationClip deathClip;
     public Animation anim;
     float time;
+    ScoreCalcutor scoreCalculator;
     //public string animat;
     void Start()
     {
@@ -31,10 +32,16 @@ public class EnemyCollider : MonoBehaviour
             //cp = clip;
             anim.clip = deathClip;
             anim.Play();
-            Debug.Log("Enemy die");
-            Destroy(collision.gameObject);
-           
+            scoreCalculator = GameObject.Find("ScoreManager").GetComponent<ScoreCalcutor>();
+            scoreCalculator.Score(5);
+            StartCoroutine("Wait"); 
         }
 
+
+    }
+    IEnumerator Wait()
+    {
+       yield return (new WaitForSeconds(1));
+        Destroy(gameObject);
     }
 }
