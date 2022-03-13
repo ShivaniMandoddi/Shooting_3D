@@ -12,10 +12,13 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed;
     float time;
+    public AudioClip audioClip;
+    AudioSource source;
     void Start()
     {
-        
+
         //rb.useGravity = false;
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,11 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(bullet);
                 time = 0f;
             }
+        }
+        if(inputX!=0 || inputZ!=0)
+        {
+            source.clip = audioClip;
+            source.Play();
         }
 
         if (Input.GetKey(KeyCode.M))
