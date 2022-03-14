@@ -10,6 +10,9 @@ public class EnemyLauncher : MonoBehaviour
     // Start is called before the first frame update
     float time;
     public GameObject enemyPrefab;
+    
+    Rigidbody rb;
+
     void Start()
     {
         
@@ -23,7 +26,11 @@ public class EnemyLauncher : MonoBehaviour
         {
             Vector3 position = GetPosition();
             //Debug.Log(position);
-            Instantiate(enemyPrefab, position, Quaternion.identity);
+            GameObject enemy=Instantiate(enemyPrefab, position, Quaternion.identity);
+            //rb = enemy.GetComponent<Rigidbody>();
+            //enemy.transform.Translate(position * enemySpeed*Time.deltaTime);
+            //rb.velocity=enemy.transform.rotation*(Vector3.forward * enemySpeed);
+            enemy.transform.Rotate(0, UnityEngine.Random.Range(0,270),0);
             time = 0f;
         }
     }

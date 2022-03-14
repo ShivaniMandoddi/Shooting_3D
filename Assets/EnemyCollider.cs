@@ -16,6 +16,7 @@ public class EnemyCollider : MonoBehaviour
     }
     void Update()
     {
+
         time = time + Time.deltaTime;
         if(time>10f)
         {
