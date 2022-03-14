@@ -35,7 +35,8 @@ public class EnemyCollider : MonoBehaviour
             anim.Play();
             scoreCalculator = GameObject.Find("ScoreManager").GetComponent<ScoreCalcutor>();
             scoreCalculator.Score(5);
-            StartCoroutine("Wait"); 
+            StartCoroutine("Wait");
+            Destroy(collision.gameObject);
         }
 
 

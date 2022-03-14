@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Bullet
   - Enemy
+  - MenuPanel
+  - Button
+  - BackButton
   layers:
   - Default
   - TransparentFX

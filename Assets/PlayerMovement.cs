@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,20 +18,27 @@ public class PlayerMovement : MonoBehaviour
     AudioSource source;
     public AudioClip bulletSound;
     AudioSource bulletAudioSource;
-    bool IsGameOver = false;
+    public bool IsGameOver = false;
     public Text gameOver;
     GameObject bullet;
+    public Button quit;
+    public Button restart;
+
     void Start()
     {
 
         //rb.useGravity = false;
         source = GetComponent<AudioSource>();
-      
+        quit.onClick.AddListener(Quit);
+        restart.onClick.AddListener(Restart);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (IsGameOver == false)
         {
             float inputZ = Input.GetAxis("Vertical") * playerSpeed;
@@ -72,6 +80,17 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
+
+    private void Restart()
+    {
+        SceneManager.LoadScene(1);
+    }
+   
+    private void Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag=="Enemy")
@@ -79,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Game Over!!");
             IsGameOver = true;
             gameOver.text = "Game Over!!";
+            quit.gameObject.SetActive(true);
+            restart.gameObject.SetActive(true);
         }
     }
     IEnumerator Destroy()

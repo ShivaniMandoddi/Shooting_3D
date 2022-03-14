@@ -10,28 +10,33 @@ public class EnemyLauncher : MonoBehaviour
     // Start is called before the first frame update
     float time;
     public GameObject enemyPrefab;
-    
+    //GameObject player;
+    PlayerMovement playerMovement;
     Rigidbody rb;
 
     void Start()
     {
-        
+
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        time = time + Time.deltaTime;
-        if(time>2f)
+        if (playerMovement.IsGameOver == false)
         {
-            Vector3 position = GetPosition();
-            //Debug.Log(position);
-            GameObject enemy=Instantiate(enemyPrefab, position, Quaternion.identity);
-            //rb = enemy.GetComponent<Rigidbody>();
-            //enemy.transform.Translate(position * enemySpeed*Time.deltaTime);
-            //rb.velocity=enemy.transform.rotation*(Vector3.forward * enemySpeed);
-            enemy.transform.Rotate(0, UnityEngine.Random.Range(0,270),0);
-            time = 0f;
+            time = time + Time.deltaTime;
+            if (time > 2f)
+            {
+                Vector3 position = GetPosition();
+                //Debug.Log(position);
+                GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+                //rb = enemy.GetComponent<Rigidbody>();
+                //enemy.transform.Translate(position * enemySpeed*Time.deltaTime);
+                //rb.velocity=enemy.transform.rotation*(Vector3.forward * enemySpeed);
+                enemy.transform.Rotate(0, UnityEngine.Random.Range(0, 270), 0);
+                time = 0f;
+            }
         }
     }
 
